@@ -6,7 +6,7 @@
 //
 
 extension HTTP.Header.Value {
-    public enum MediaType: RawRepresentable {
+    public enum MediaType: RawRepresentable, Equatable {
         public typealias RawValue = String
         
         case all

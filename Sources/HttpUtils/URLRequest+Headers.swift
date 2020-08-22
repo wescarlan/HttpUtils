@@ -20,6 +20,10 @@ public extension URLRequest {
         self.setValue(value, forHTTPHeaderField: headerField.rawValue)
     }
     
+    func value(forHTTPHeaderField headerField: HTTP.Header.RequestField) -> String? {
+        return self.value(forHTTPHeaderField: headerField.rawValue)
+    }
+    
     mutating func accept(_ mediaTypes: [HTTP.Header.Value.MediaType]) {
         let acceptedTypes = mediaTypes.map({ $0.rawValue }).joined(separator: ", ")
         setValue(acceptedTypes, forHTTPHeaderField: .accept)
