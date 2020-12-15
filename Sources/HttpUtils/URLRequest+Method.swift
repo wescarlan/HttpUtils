@@ -12,6 +12,11 @@ import FoundationNetworking
 #endif
 
 public extension URLRequest {
+    init(url: URL, method: HTTP.Method) {
+        self.init(url: url)
+        setMethod(method)
+    }
+    
     mutating func setMethod(_ method: HTTP.Method) {
         httpMethod = method.rawValue
     }

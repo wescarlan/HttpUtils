@@ -25,6 +25,33 @@ final class HttpMethodUtilsTests: XCTestCase {
         urlRequest = URLRequest(url: url!)
     }
     
+    // MARK: - URLRequest.init(url:method:)
+    
+    func testInitWithMethod_get() {
+        let urlRequest = URLRequest(url: url, method: .get)
+        XCTAssertEqual("GET", urlRequest.httpMethod)
+    }
+    
+    func testInitWithMethod_post() {
+        let urlRequest = URLRequest(url: url, method: .post)
+        XCTAssertEqual("POST", urlRequest.httpMethod)
+    }
+    
+    func testInitWithMethod_put() {
+        let urlRequest = URLRequest(url: url, method: .put)
+        XCTAssertEqual("PUT", urlRequest.httpMethod)
+    }
+    
+    func testInitWithMethod_delete() {
+        let urlRequest = URLRequest(url: url, method: .delete)
+        XCTAssertEqual("DELETE", urlRequest.httpMethod)
+    }
+    
+    func testInitWithMethod_any() {
+        let urlRequest = URLRequest(url: url, method: .any)
+        XCTAssertEqual("ANY", urlRequest.httpMethod)
+    }
+    
     // MARK: - URLRequest.setMethod(_:)
     
     func testSetMethod_get() {

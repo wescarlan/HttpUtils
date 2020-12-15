@@ -38,8 +38,7 @@ import HttpUtils
 
 ```swift
 // Create a URL request.
-var urlRequest = URLRequest(url: URL(string: "www.example.com")!)
-urlRequest.setMethod(.get)
+var urlRequest = URLRequest(url: URL(string: "www.example.com")!, method: .get)
 urlRequest.setValue("authentication_token", forHTTPHeaderField: .authorization)
 urlRequest.accept([.application(.json)])
 
