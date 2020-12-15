@@ -1,8 +1,8 @@
 //
-//  HttpHeaderUtilsTests.swift
+//  URLRequestTests.swift
 //  HttpUtils
 //
-//  Created by Wesley on 8/22/20.
+//  Created by Wesley on 12/14/20.
 //
 
 import XCTest
@@ -13,7 +13,7 @@ import FoundationNetworking
 
 @testable import HttpUtils
 
-final class HttpHeaderUtilsTests: XCTestCase {
+final class URLRequestTests: XCTestCase {
     
     var url: URL!
     var urlRequest: URLRequest!
@@ -23,256 +23,6 @@ final class HttpHeaderUtilsTests: XCTestCase {
         
         url = URL(string: "http://www.example.com")
         urlRequest = URLRequest(url: url!)
-    }
-    
-    // MARK: - HTTP.Header.Value.MediaType.init?(rawValue:)
-    // MARK: nil
-    
-    func testInitMediaType_invalidFormat() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "invalid format")
-        XCTAssertNil(mediaType)
-    }
-    
-    func testInitMediaType_invalidMediaType() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "invalid media type/invalid type")
-        XCTAssertNil(mediaType)
-    }
-    
-    func testInitMediaType_application_invalid() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/invalid type")
-        XCTAssertNil(mediaType)
-    }
-    
-    func testInitMediaType_audio_invalid() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "audio/invalid type")
-        XCTAssertNil(mediaType)
-    }
-    
-    func testInitMediaType_image_invalid() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "image/invalid type")
-        XCTAssertNil(mediaType)
-    }
-    
-    func testInitMediaType_multipart_invalid() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "multipart/invalid type")
-        XCTAssertNil(mediaType)
-    }
-    
-    func testInitMediaType_text_invalid() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "text/invalid type")
-        XCTAssertNil(mediaType)
-    }
-    
-    // MARK: MediaType.all
-    
-    func testInitMediaType_all() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "*/*")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.all, mediaType)
-    }
-    
-    // MARK: MediaType.application
-    
-    func testInitMediaType_application_all() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/*")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.all), mediaType)
-    }
-    
-    func testInitMediaType_application_doc() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/msword")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.doc), mediaType)
-    }
-    
-    func testInitMediaType_application_formUrlEncoded() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/x-www-form-urlencoded")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.formUrlEncoded), mediaType)
-    }
-    
-    func testInitMediaType_application_graphQL() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/graphql")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.graphQL), mediaType)
-    }
-    
-    func testInitMediaType_application_javascript() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/javascript")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.javascript), mediaType)
-    }
-    
-    func testInitMediaType_application_json() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/json")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.json), mediaType)
-    }
-    
-    func testInitMediaType_application_ldJson() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/ld+json")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.ldJson), mediaType)
-    }
-    
-    func testInitMediaType_application_pdf() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/pdf")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.pdf), mediaType)
-    }
-    
-    func testInitMediaType_application_sql() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/sql")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.sql), mediaType)
-    }
-    
-    func testInitMediaType_application_vndApiJson() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/vnd.api+json")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.vndApiJson), mediaType)
-    }
-    
-    func testInitMediaType_application_vndDocx() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.vndDocx), mediaType)
-    }
-    
-    func testInitMediaType_application_vndOdt() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/vnd.oasis.opendocument.text")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.vndOdt), mediaType)
-    }
-    
-    func testInitMediaType_application_vndPpt() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/vnd.ms-powerpoint")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.vndPpt), mediaType)
-    }
-    
-    func testInitMediaType_application_vndPptx() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/vnd.openxmlformats-officedocument.presentationml.presentation")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.vndPptx), mediaType)
-    }
-    
-    func testInitMediaType_application_vndXls() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/vnd.ms-excel")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.vndXls), mediaType)
-    }
-    
-    func testInitMediaType_application_vndXlsx() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.vndXlsx), mediaType)
-    }
-    
-    func testInitMediaType_application_xml() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/xml")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.xml), mediaType)
-    }
-    
-    func testInitMediaType_application_zip() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/zip")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.zip), mediaType)
-    }
-    
-    func testInitMediaType_application_zst() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "application/zstd")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.application(.zst), mediaType)
-    }
-    
-    // MARK: MediaType.audio
-    
-    func testInitMediaType_audio_all() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "audio/*")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.audio(.all), mediaType)
-    }
-    
-    func testInitMediaType_audio_mpeg() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "audio/mpeg")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.audio(.mpeg), mediaType)
-    }
-    
-    func testInitMediaType_audio_ogg() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "audio/ogg")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.audio(.ogg), mediaType)
-    }
-    
-    // MARK: MediaType.image
-    
-    func testInitMediaType_image_all() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "image/*")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.image(.all), mediaType)
-    }
-    
-    func testInitMediaType_image_apng() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "image/apng")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.image(.apng), mediaType)
-    }
-
-    func testInitMediaType_image_flif() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "image/flif")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.image(.flif), mediaType)
-    }
-    
-    func testInitMediaType_image_gif() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "image/gif")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.image(.gif), mediaType)
-    }
-    
-    func testInitMediaType_image_jpeg() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "image/jpeg")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.image(.jpeg), mediaType)
-    }
-    
-    func testInitMediaType_image_mng() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "image/x-mng")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.image(.mng), mediaType)
-    }
-    
-    func testInitMediaType_image_png() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "image/png")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.image(.png), mediaType)
-    }
-    
-    func testInitMediaType_image_webp() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "image/webp")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.image(.webp), mediaType)
-    }
-    
-    // MARK: MediaType.multipart
-    
-    func testInitMediaType_multipart_all() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "multipart/*")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.multipart(.all), mediaType)
-    }
-    
-    func testInitMediaType_multipart_formData() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "multipart/form-data")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.multipart(.formData), mediaType)
-    }
-    
-    // MARK: MediaType.text
-    
-    func testInitMediaType_text_all() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "text/*")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.text(.all), mediaType)
-    }
-    
-    func testInitMediaType_text_css() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "text/css")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.text(.css), mediaType)
-    }
-    
-    func testInitMediaType_text_csv() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "text/csv")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.text(.csv), mediaType)
-    }
-    
-    func testInitMediaType_text_html() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "text/html")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.text(.html), mediaType)
-    }
-    
-    func testInitMediaType_text_php() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "text/php")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.text(.php), mediaType)
-    }
-    
-    func testInitMediaType_text_plain() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "text/plain")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.text(.plain), mediaType)
-    }
-    
-    func testInitMediaType_text_xml() {
-        let mediaType = HTTP.Header.Value.MediaType(rawValue: "text/xml")
-        XCTAssertEqual(HTTP.Header.Value.MediaType.text(.xml), mediaType)
     }
     
     // MARK: - URLRequest.addValue(_:forHTTPHeaderField:)
@@ -927,5 +677,59 @@ final class HttpHeaderUtilsTests: XCTestCase {
         let mockTransferEncodingTypes: [HTTP.Header.Value.TransferEncodingType] = [.chunked, .compress, .gzip]
         urlRequest.setTransferEncoding(mockTransferEncodingTypes)
         XCTAssertEqual("chunked, compress, gzip", urlRequest.value(forHTTPHeaderField: .transferEncoding))
+    }
+    
+    // MARK: - URLRequest.init(url:method:)
+    
+    func testInitWithMethod_get() {
+        let urlRequest = URLRequest(url: url, method: .get)
+        XCTAssertEqual("GET", urlRequest.httpMethod)
+    }
+    
+    func testInitWithMethod_post() {
+        let urlRequest = URLRequest(url: url, method: .post)
+        XCTAssertEqual("POST", urlRequest.httpMethod)
+    }
+    
+    func testInitWithMethod_put() {
+        let urlRequest = URLRequest(url: url, method: .put)
+        XCTAssertEqual("PUT", urlRequest.httpMethod)
+    }
+    
+    func testInitWithMethod_delete() {
+        let urlRequest = URLRequest(url: url, method: .delete)
+        XCTAssertEqual("DELETE", urlRequest.httpMethod)
+    }
+    
+    func testInitWithMethod_any() {
+        let urlRequest = URLRequest(url: url, method: .any)
+        XCTAssertEqual("ANY", urlRequest.httpMethod)
+    }
+    
+    // MARK: - URLRequest.setMethod(_:)
+    
+    func testSetMethod_get() {
+        urlRequest.setMethod(.get)
+        XCTAssertEqual("GET", urlRequest.httpMethod)
+    }
+    
+    func testSetMethod_post() {
+        urlRequest.setMethod(.post)
+        XCTAssertEqual("POST", urlRequest.httpMethod)
+    }
+    
+    func testSetMethod_put() {
+        urlRequest.setMethod(.put)
+        XCTAssertEqual("PUT", urlRequest.httpMethod)
+    }
+    
+    func testSetMethod_delete() {
+        urlRequest.setMethod(.delete)
+        XCTAssertEqual("DELETE", urlRequest.httpMethod)
+    }
+    
+    func testSetMethod_any() {
+        urlRequest.setMethod(.any)
+        XCTAssertEqual("ANY", urlRequest.httpMethod)
     }
 }
