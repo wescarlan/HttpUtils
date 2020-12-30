@@ -22,7 +22,7 @@ Add the following to your Package.swift file:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/wescarlan/HttpUtils", from: "0.1.0")
+    .package(url: "https://github.com/wescarlan/HttpUtils", from: "0.1.1")
 ]
 ```
 
@@ -40,6 +40,7 @@ import HttpUtils
 // Create a URL request.
 var urlRequest = URLRequest(url: URL(string: "www.example.com")!, method: .get)
 urlRequest.setValue("authentication_token", forHTTPHeaderField: .authorization)
+urlRequest.setContentTypeHeader(.application(.json))
 urlRequest.accept([.application(.json)])
 
 URLSession.shared.dataTask(with: urlRequest).resume()

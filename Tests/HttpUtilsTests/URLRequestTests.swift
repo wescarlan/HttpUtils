@@ -604,6 +604,38 @@ final class URLRequestTests: XCTestCase {
         XCTAssertEqual("ANY", urlRequest.value(forHTTPHeaderField: .accessControlRequestMethod))
     }
     
+    // MARK: - URLRequest.setContentTypeHeader(_:)
+    
+    func testSetContentTypeHeader_all() {
+        urlRequest.setContentTypeHeader(.all)
+        XCTAssertEqual("*/*", urlRequest.value(forHTTPHeaderField: .contentType))
+    }
+    
+    func testSetContentTypeHeader_application_all() {
+        urlRequest.setContentTypeHeader(.application(.all))
+        XCTAssertEqual("application/*", urlRequest.value(forHTTPHeaderField: .contentType))
+    }
+    
+    func testSetContentTypeHeader_audio_all() {
+        urlRequest.setContentTypeHeader(.audio(.all))
+        XCTAssertEqual("audio/*", urlRequest.value(forHTTPHeaderField: .contentType))
+    }
+    
+    func testSetContentTypeHeader_image_all() {
+        urlRequest.setContentTypeHeader(.image(.all))
+        XCTAssertEqual("image/*", urlRequest.value(forHTTPHeaderField: .contentType))
+    }
+    
+    func testSetContentTypeHeader_multipart_all() {
+        urlRequest.setContentTypeHeader(.multipart(.all))
+        XCTAssertEqual("multipart/*", urlRequest.value(forHTTPHeaderField: .contentType))
+    }
+    
+    func testSetContentTypeHeader_text_all() {
+        urlRequest.setContentTypeHeader(.text(.all))
+        XCTAssertEqual("text/*", urlRequest.value(forHTTPHeaderField: .contentType))
+    }
+    
     // MARK: - URLRequest.setCookies(_:)
     
     func testSetCookies_emptyArray() {

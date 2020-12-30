@@ -38,6 +38,10 @@ public extension URLRequest {
         setValue(method.rawValue, forHTTPHeaderField: .accessControlRequestMethod)
     }
     
+    mutating func setContentTypeHeader(_ contentType: HTTP.Header.Value.MediaType) {
+        setValue(contentType.rawValue, forHTTPHeaderField: .contentType)
+    }
+    
     mutating func setCookies(_ cookies: [HTTPCookie]) {
         let headers = HTTPCookie.requestHeaderFields(with: cookies)
         headers.forEach { (field: String, value: String) in
